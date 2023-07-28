@@ -1,30 +1,28 @@
-# Checkson self check for Google PubSub integration
+# Checkson check for verifying that Docker images are present in a registry
 
-This check is used to monitor Checkson itself. It checks if a message can be sent to Google PubSub and that
-this message is received by the relevant service within the Checkson backend.
-
-This check is likely not useful to anyone else, except as an example.
+You can use this check to verify that Docker images are present in a registry.
+When any of the configured images are not present, the check fails.
 
 ## Environment variables
 
 | Variable           | Description |
-|------------------- |-------------|
-| `CHECK_API_SECRET` | The secret to use for sending the message |
+|--------------------|-------------|
+| `IMAGES`           | Comma-separated list of images, e.g. `redis:7,postgres:15.3` |
 
 ## Use check on Checkson
 
 This check can be used on [checkson.io](https://checkson.io) (or anywhere else) with the following Docker image:
 
 ```
-ghcr.io/checkson-io/checkson-pubsub-self-check:main
+ghcr.io/checkson-io/checkson-docker-image-exists-check:main
 ```
 
 ## Run check locally
 
 ```
 docker run \
-  --env CHECK_API_SECRET=xyz123 \
+  --env IMAGES=redis:7,postgres:15.3 \
   --rm \
   -it \
-  ghcr.io/checkson-io/checkson-pubsub-self-heck:main
+  ghcr.io/checkson-io/checkson-docker-image-exists-check:main
 ```
