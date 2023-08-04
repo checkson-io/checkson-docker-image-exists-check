@@ -3,7 +3,7 @@
 # Check if images are configured
 
 if [[ -z "$IMAGES" ]]; then
-  echo "Please set the IMAGE environment variable"
+  echo "Please set the IMAGES environment variable"
   exit 1
 fi
 
